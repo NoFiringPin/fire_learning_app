@@ -1,0 +1,39 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin" // Ensure this is the correct plugin
+}
+
+android {
+    namespace = "com.example.fire_learning_app"
+    compileSdk = 35 // Replace with the latest version you have installed
+
+    ndkVersion = "28.0.12433566"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.fire_learning_app"
+        minSdk = 21 // Replace with your minimum SDK requirement
+        targetSdk = 35 // Match this to your compileSdk version
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Update for production if needed
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
