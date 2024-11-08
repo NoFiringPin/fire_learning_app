@@ -1,4 +1,3 @@
-// differentTypesOfFires.dart
 import 'package:flutter/material.dart';
 
 class DifferentTypesOfFiresPage extends StatelessWidget {
@@ -8,96 +7,52 @@ class DifferentTypesOfFiresPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Types of Fires'),
       ),
-      body: GridView.count(
-        crossAxisCount: 3, // Display 2 buttons per row
-        padding: const EdgeInsets.all(20),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        children: [
-          // Wildfire button
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/wildfire');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.local_fire_department, size: 50, color: Colors.white),
-                  SizedBox(height: 10),
-                  Text('Wildfire', style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
+      body: SingleChildScrollView( // Add a scroll view to allow scrolling if needed
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: GridView.count(
+            crossAxisCount: 3,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: [
+              buildFireButton(context, '/wildFire', Colors.blue, Icons.local_fire_department, 'Wildfire'),
+              buildFireButton(context, '/kitchenFire', Colors.orange, Icons.kitchen, 'Kitchen Fire'),
+              buildFireButton(context, '/forestFire', Colors.green, Icons.park_sharp, 'Forest Fire'),
+              buildFireButton(context, '/campusFire', Colors.yellow, Icons.school_outlined, 'Fire on Campus'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildFireButton(BuildContext context, String route, Color color, IconData icon, String label) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, route);
+      },
+      child: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 50, color: Colors.white),
+            SizedBox(height: 10),
+            Expanded( // This ensures the text and icon fit without overflow
+              child: Text(
+                label,
+                style: TextStyle(color: Colors.white, fontSize: 18),
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          // Kitchen Fire button
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/kitchenFire');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.kitchen, size: 50, color: Colors.white),
-                  SizedBox(height: 10),
-                  Text('Kitchen Fire', style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
-              ),
-            ),
-          ),
-          // Forest Fire button
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/forestFire');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.park_sharp, size: 50, color: Colors.white),
-                  SizedBox(height: 10),
-                  Text('Forest Fire', style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/campusFire');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.yellow,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.school_outlined, size: 50, color: Colors.white),
-                  SizedBox(height: 10),
-                  Text('Fire on Campus', style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

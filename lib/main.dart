@@ -8,7 +8,7 @@ import 'tipsOnHowToSurviveFires.dart';
 import 'differentFires/wildfire.dart';
 import 'differentFires/kitchenfire.dart';
 import 'differentFires/campusfire.dart';
-// import 'differentFires/forestfire.dart';  // Import the fire type pages
+//import 'differentFires/forestfire.dart';  // Import the fire type pages
 
 void main() {
   runApp(MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/wildFire': (context) => WildfirePage(),
         '/kitchenFire': (context) => KitchenFirePage(),
         '/campusFire':(context) => CampusFirePage(),
-        // '/forestFire': (context) => ForestFirePage(),
+        //'/forestFire': (context) => ForestFirePage(),
       },
     );
   }
